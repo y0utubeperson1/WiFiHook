@@ -1,0 +1,8 @@
+Package: com.apple.wifihooklibd
+Name: WiFiHookLibD
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: WiFi network monitoring library daemon
+Maintainer: Apple Inc.
+Author: Apple Inc.
+Section: System

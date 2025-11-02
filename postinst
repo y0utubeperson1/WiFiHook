@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Post-installation script for WiFiHook
+# Resprings the device after installation
+
+if [[ $1 == configure ]]; then
+    # Respring SpringBoard to activate the tweak
+    killall -9 SpringBoard 2>/dev/null
+fi
+
+exit 0

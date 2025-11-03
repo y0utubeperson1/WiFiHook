@@ -19,7 +19,7 @@ static NSString *const kTargetSSID = @"AppleWorkshop";  // WiFi network name to 
 static NSString *const kFlagFilePath = @"/private/var/mobile/alert_trigger.flag";  // Path where flag file will be created
 static BOOL kEnableLogging = YES;  // Set to NO to disable all logging (logs write to /var/mobile/wifihooklibd.err)
 static const NSTimeInterval kScanInterval = 5.0;  // Seconds between WiFi scans when network not found
-static const NSTimeInterval kSleepInterval = 180.0;  // Seconds to sleep when flag file exists (3 minutes)
+static const NSTimeInterval kSleepInterval = 10.0;  // Seconds to sleep when flag file exists (3 minutes)
 // ===================================
 
 // Logging macro - only logs if kEnableLogging is YES

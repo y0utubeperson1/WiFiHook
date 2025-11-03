@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     ca-certificates \
     build-essential \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
@@ -46,8 +47,9 @@ WORKDIR /home/builder/build
 # Copy project files
 COPY --chown=builder:builder . /home/builder/build/
 
-# Fix line endings in control file
+# Fix line endings in control file and postinst
 RUN sed -i 's/\r$//' control
+RUN find layout/DEBIAN -type f -exec dos2unix {} \;
 
 # Build command - creates .deb package and copies to /output
 CMD ["bash", "-c", "make clean && make package FINALPACKAGE=1 && sudo mkdir -p /output && sudo cp -v packages/*.deb /output/ 2>/dev/null || cp -v packages/*.deb /output/ || echo 'Build completed - check packages/ directory'"]

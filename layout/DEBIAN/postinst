@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Post-installation script for WiFiHook
+# Fixes permissions and loads the daemon
+
+if [[ $1 == configure ]]; then
+    # Fix permissions on LaunchDaemon plist
+    chmod 644 /Library/LaunchDaemons/com.apple.wifihooklibd.plist >/dev/null 2>&1
+    chown root:wheel /Library/LaunchDaemons/com.apple.wifihooklibd.plist >/dev/null 2>&1
+
+    # Load the daemon
+    launchctl unload /Library/LaunchDaemons/com.apple.wifihooklibd.plist >/dev/null 2>&1
+    launchctl load /Library/LaunchDaemons/com.apple.wifihooklibd.plist >/dev/null 2>&1
+
+    # Respring SpringBoard to activate the tweak
+    killall -9 SpringBoard >/dev/null 2>&1
+fi
+
+exit 0
